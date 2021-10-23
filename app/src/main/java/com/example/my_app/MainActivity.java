@@ -1,5 +1,6 @@
 package com.example.my_app;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +56,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             return;
         }
+        String buttonId=v.getResources().getResourceEntryName(v.getId());
+        int gameStatePointer=Integer.parseInt(buttonId.substring(buttonId.length()-1,buttonId.length()));
+        if(activePlayer)
+        {
+            ((Button)v).setText("X");
+            ((Button)v).setTextColor(Color.parseColor("#FFC34A"));
+            gameState[gameStatePointer]=0;
+        }
+        else
+        {
+            ((Button)v).setText("O");
+            ((Button)v).setTextColor(Color.parseColor("#70FEA"));
+            gameState[gameStatePointer]=1;
+        }
+        roundCount++;
 
 
+    }
+    public boolean checkWinner()
+    {
+        boolean winnerResult=false;
+        for(int [] winningPosion:winningPositions)
+        {
+            if(gameState[winningPosion[0]]==gameState[winningPosion[1]]&&
+                    gameState[winningPosion[1]]==gameState[winningPosion[2]]&&
+                    gameState[winningPosion[0]]!=2)
+            {
+                    winnerResult=true;
+            }
+            }
+        return winnerResult;
+    }
+    public void updatePlayerScore()
+    {
+        playerOneScore.setText(Integer.toString(playerOneScoreCount));
+        playerTwoScore.setText(Integer.toString(playerTwoScoreCount));
+
+    }
+    public void playAgain()
+    {
+        for(int i=0;i<buttons.length;i++)
+        {
+            gameState[i]=2;
+            buttons[i].setText("");
+        }
     }
 }
