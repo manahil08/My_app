@@ -47,23 +47,23 @@
         app:layout_constraintBottom_toBottomOf="@+id/PlayerTwo"
         app:layout_constraintRight_toRightOf="@+id/PlayerTwo"
         />
+
     <TextView
         android:id="@+id/playerStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:textAlignment="center"
-        android:text="Player One is winning"
-        app:layout_constraintBottom_toBottomOf="@+id/playerOneScore"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
     <Button
         android:id="@+id/btn_0"
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:textSize="60sp"
-        android:text="X"
+
         android:textStyle="bold"
         android:backgroundTint="#413F43"
         android:textColor="#ffffff"
@@ -72,6 +72,35 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="15dp"
         />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:textSize="60sp"
+
+        android:textStyle="bold"
+        android:backgroundTint="#413F43"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toTopOf="@+id/btn_0"
+        app:layout_constraintLeft_toRightOf="@+id/btn_0"
+
+        />
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:textSize="60sp"
+
+        android:textStyle="bold"
+        android:backgroundTint="#413F43"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toTopOf="@+id/btn_1"
+        app:layout_constraintLeft_toRightOf="@+id/btn_1"
+
+        />
+
 
 
 </android.support.constraint.ConstraintLayout>
