@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -71,7 +72,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             gameState[gameStatePointer]=1;
         }
         roundCount++;
+        if(checkWinner())
+        {
+            if(activePlayer)
+            {
+                playerOneScoreCount++;
+                updatePlayerScore();
+                Toast.makeText(this,"player One win!",Toast.LENGTH_SHORT).show();
+                playAgain();
 
+            }else{
+                playerTwoScoreCount++;
+                updatePlayerScore();
+                Toast.makeText(this,"player Two win!",Toast.LENGTH_SHORT).show();
+                playAgain();
+
+            }
+        }else if(roundCount==9){
+            playAgain();
+            Toast.makeText(this,"No Winner!",Toast.LENGTH_SHORT).show();
+
+        }else{
+            activePlayer=!activePlayer;
+        }
+        resetGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playAgain();
+                playerOneScoreCount=0;
+                playerTwoScoreCount=0;
+                playerStatus.setText("");
+                updatePlayerScore();
+            }
+        });
 
     }
     public boolean checkWinner()
@@ -93,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playerOneScore.setText(Integer.toString(playerOneScoreCount));
         playerTwoScore.setText(Integer.toString(playerTwoScoreCount));
 
-        
+
     }
     public void playAgain()
     {
