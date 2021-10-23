@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private TextView playerOneScore,playerTwoScore,playerStatus;
-    private Button [] buttons=new Button[9];
+    private  Button [] buttons=new Button[9];
     private Button resetGame;
     private int playerOneScoreCount,playerTwoScoreCount,roundCount;
     boolean activePlayer;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playerOneScore=(TextView) findViewById(R.id.playerOneScore);
+        playerOneScore=(TextView)findViewById(R.id.playerOneScore);
         playerTwoScore=(TextView) findViewById(R.id.playerTwoScore);
         playerStatus=(TextView) findViewById(R.id.playerStatus);
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
         {
             ((Button)v).setText("O");
-            ((Button)v).setTextColor(Color.parseColor("#70FEA"));
+            ((Button)v).setTextColor(Color.parseColor("#FFC34A"));
             gameState[gameStatePointer]=1;
         }
         roundCount++;
@@ -79,15 +79,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playerOneScoreCount++;
                 updatePlayerScore();
                 Toast.makeText(this,"player One win!",Toast.LENGTH_SHORT).show();
-                playAgain();
 
             }else{
                 playerTwoScoreCount++;
                 updatePlayerScore();
                 Toast.makeText(this,"player Two win!",Toast.LENGTH_SHORT).show();
-                playAgain();
 
             }
+            playAgain();
         }else if(roundCount==9){
             playAgain();
             Toast.makeText(this,"No Winner!",Toast.LENGTH_SHORT).show();
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 playAgain();
                 playerOneScoreCount=0;
                 playerTwoScoreCount=0;
@@ -118,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     gameState[winningPosion[0]]!=2)
             {
                     winnerResult=true;
+            }else{
+
             }
             }
         return winnerResult;
