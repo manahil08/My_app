@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
                 playAgain();
                 playerOneScoreCount=0;
                 playerTwoScoreCount=0;
