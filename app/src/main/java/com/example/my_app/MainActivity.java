@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        roundCount=roundCount+1;
         if(!((Button)v).getText().toString().equals(""))
         {
             return;
@@ -62,16 +63,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(activePlayer)
         {
             ((Button)v).setText("X");
-            ((Button)v).setTextColor(Color.parseColor("#FFC34A"));
+            ((Button)v).setTextColor(Color.parseColor("#FFC300"));
             gameState[gameStatePointer]=0;
         }
         else
         {
             ((Button)v).setText("O");
-            ((Button)v).setTextColor(Color.parseColor("#FFC34A"));
+            ((Button)v).setTextColor(Color.parseColor("#C70039"));
             gameState[gameStatePointer]=1;
         }
-        roundCount++;
+
         if(checkWinner())
         {
             if(activePlayer)
@@ -79,21 +80,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playerOneScoreCount++;
                 updatePlayerScore();
                 Toast.makeText(this,"player One win!",Toast.LENGTH_SHORT).show();
-
+                playAgain();
             }else{
                 playerTwoScoreCount++;
                 updatePlayerScore();
                 Toast.makeText(this,"player Two win!",Toast.LENGTH_SHORT).show();
-
+                playAgain();
             }
-            playAgain();
-        }else if(roundCount==9){
-            playAgain();
-            Toast.makeText(this,"No Winner!",Toast.LENGTH_SHORT).show();
 
+        }else if(roundCount==9){
+
+            Toast.makeText(this,"No Winner!",Toast.LENGTH_SHORT).show();
+            playAgain();
         }else{
             activePlayer=!activePlayer;
         }
+
         resetGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +119,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     gameState[winningPosion[0]]!=2)
             {
                     winnerResult=true;
-            }else{
-
             }
             }
         return winnerResult;
@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void playAgain()
     {
+        roundCount=0;
+        activePlayer=true;
         for(int i=0;i<buttons.length;i++)
         {
             gameState[i]=2;
